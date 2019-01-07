@@ -12,8 +12,17 @@ router.get('/items/create', async (req, res, next) => {
 });
 
 router.post('/items/create', async (req, res, next) => {
-  await Item.create(req.body);
-  res.redirect('/');
+  const {title, description, imageUrl} = req.body;
+  const item = new Item({title, description, imageUrl});
+
+  item.validateSync();
+
+  if (item.errors) {
+  	res.status(400).render('create', {item: item});
+  } else {
+  	await item.save();
+  	res.redirect('/');
+  }
 });
 
 module.exports = router;

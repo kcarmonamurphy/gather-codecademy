@@ -76,6 +76,42 @@ describe('Server path: /items/create', () => {
 
       assert.include(parseTextFromHTML(response.text, 'form'), 'required');
     });
+
+    it('should display an error if no description', async () => {
+      const invalidItemToCreate = {
+        title: 'test title',
+        imageUrl: 'https://www.placebear.com/200/300',
+      }
+      const response = await request(app)
+        .post('/items/create')
+        .type('form')
+        .send(invalidItemToCreate);
+
+      const allItems = await Item.find({});
+      assert.equal(allItems.length, 0);
+
+      assert.equal(response.status, 400);
+
+      assert.include(parseTextFromHTML(response.text, 'form'), 'required');
+    });
+
+    it('should display an error if no imageUrl', async () => {
+      const invalidItemToCreate = {
+        title: 'test title',
+        description: 'test description'
+      }
+      const response = await request(app)
+        .post('/items/create')
+        .type('form')
+        .send(invalidItemToCreate);
+
+      const allItems = await Item.find({});
+      assert.equal(allItems.length, 0);
+
+      assert.equal(response.status, 400);
+
+      assert.include(parseTextFromHTML(response.text, 'form'), 'required');
+    });
   });
 
 });

@@ -48,7 +48,7 @@ describe('Server path: /items/create', () => {
       assert.isNotNull(createdItem, 'Item was not successfully created in the database');
     });
 
-    it('something', async () => {
+    it('should redirect to home page', async () => {
       const itemToCreate = buildItemObject();
       const response = await request(app)
         .post('/items/create')
@@ -57,6 +57,24 @@ describe('Server path: /items/create', () => {
 
       assert.equal(response.status, 302);
       assert.equal(response.headers.location, '/');
+    });
+
+    it('should display an error if no title', async () => {
+      const invalidItemToCreate = {
+        description: 'test',
+        imageUrl: 'https://www.placebear.com/200/300',
+      }
+      const response = await request(app)
+        .post('/items/create')
+        .type('form')
+        .send(invalidItemToCreate);
+
+      const allItems = await Item.find({});
+      assert.equal(allItems.length, 0);
+
+      assert.equal(response.status, 400);
+
+      assert.include(parseTextFromHTML(response.text, 'form'), 'required');
     });
   });
 

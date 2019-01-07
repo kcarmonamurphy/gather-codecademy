@@ -13,5 +13,22 @@ describe('Model: Item', () => {
   });
 
   // Write your tests below:
+  describe('#title', () => {
+  	it('should be a string', () => {
+  		const titleAsNonString = 1;
+
+  		const item = new Item({title: titleAsNonString});
+
+  		assert.strictEqual(item.title, titleAsNonString.toString());
+  	});
+
+  	it('is required', () => {
+  		const item = new Item({title: ''});
+
+  		item.validateSync();
+
+  		assert.equal(item.errors.title.message, 'Path `title` is required.');
+  	})
+  })
 
 });

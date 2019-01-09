@@ -11,12 +11,6 @@ router.get('/items/create', async (req, res, next) => {
   res.render('create');
 });
 
-router.get('/items/:item_id', async (req, res, next) => {
-	const id = req.params.item_id;
-	const item = await Item.findById(id);
-  	res.render('single', {item});
-});
-
 router.post('/items/create', async (req, res, next) => {
   const {title, description, imageUrl} = req.body;
   const item = new Item({title, description, imageUrl});
@@ -29,6 +23,12 @@ router.post('/items/create', async (req, res, next) => {
   	await item.save();
   	res.redirect('/');
   }
+});
+
+router.get('/items/:item_id', async (req, res, next) => {
+	const id = req.params.item_id;
+	const item = await Item.findById(id);
+  	res.render('single', {item});
 });
 
 router.post('/items/:item_id/delete', async (req, res, next) => {

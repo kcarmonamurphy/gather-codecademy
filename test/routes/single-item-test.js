@@ -23,5 +23,4 @@ describe('Server path: /items/:id', () => {
       	assert.equal(parseTextFromHTML(response.text, '#item-description'), item.description);
   	});
   });
-  
 });

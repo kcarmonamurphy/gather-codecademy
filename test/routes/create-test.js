@@ -18,8 +18,6 @@ const findImageElementBySource = (htmlAsString, src) => {
 };
 
 describe('Server path: /items/create', () => {
-  const itemToCreate = buildItemObject();
-
   beforeEach(connectDatabaseAndDropData);
 
   afterEach(diconnectDatabase);
@@ -113,5 +111,4 @@ describe('Server path: /items/create', () => {
       assert.include(parseTextFromHTML(response.text, 'form'), 'required');
     });
   });
-
 });

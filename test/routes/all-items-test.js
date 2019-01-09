@@ -17,7 +17,6 @@ const findImageElementBySource = (htmlAsString, src) => {
 };
 
 describe('Server path: /', () => {
-
   beforeEach(connectDatabaseAndDropData);
 
   afterEach(diconnectDatabase);

@@ -9,7 +9,7 @@ Simple photo gathering application which includes **CRD (Create-Read-Destroy)** 
 
 #### Technology
 
-- Node.js
+- Node.js (requires v8)
 - Express
 - Mocha & Chai
 - WebDriverIO

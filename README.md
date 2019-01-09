@@ -2,10 +2,10 @@
 
 ![gather app](readme-assets/gather-app.png)
 
-![intensive codecademy course on tdd](readme-assets/tdd-course.png)
-
 #### Description
 Simple photo gathering application which includes **CRD (Create-Read-Destroy)** functionality. Completed as a homework assignment for Codecademy Test-Driven-Development (TDD) online course.
+
+<img src="readme-assets/tdd-course.png" alt="intensive codecademy course on tdd" width="100" />
 
 #### Technology
 
@@ -28,5 +28,5 @@ Simple photo gathering application which includes **CRD (Create-Read-Destroy)** 
 
 #### Running
 
-**TESTS** (Because TDD is awesome): `npm test`
-**SERVER**: `npm start`
+- **TESTS** (Because TDD is awesome): `npm test`
+- **SERVER**: `npm start`
